@@ -37,7 +37,9 @@ object ScribeEventPublisherModule extends TwitterModule {
     val serializer = EventLogMsgThriftStructSerializer.getNewSerializer[ca.LogEvent]()
 
     if (sendToScribe)
-      EventPublisherManager.buildScribeLogPipelinePublisher(ClientEventLogCategory, serializer)
+      EventPublisherManager.buildScribeLogPipelinePublisher(
+        ClientEventLogCategory,
+        serializer)
     else
       EventPublisherManager.buildInMemoryPublisher(
         ClientEventLogCategory,
